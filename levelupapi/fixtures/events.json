@@ -6,7 +6,7 @@
             "host_id": 1,
             "game_id": 1,
             "date": "2021-08-15",
-            "time": "13:00",
+            "time": "13:00:00",
             "description": "Come play a classic game of checkers, tournament style!",
             "title": "Checkers Match",
             "attendees": []
@@ -20,7 +20,7 @@
             "host_id": 1,
             "game_id": 2,
             "date": "2021-08-25",
-            "time": "15:00",
+            "time": "15:00:00",
             "description": "Come join a game of Risk. Food and beverages will be supplied for the length of the game.",
             "title": "Risky Business",
             "attendees": []
