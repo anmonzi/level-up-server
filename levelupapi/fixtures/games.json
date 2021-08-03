@@ -1,0 +1,26 @@
+[
+    {
+        "model": "levelupapi.game",
+        "pk": 1,
+        "fields": {
+            "name": "Checkers",
+            "game_type": 1,
+            "description": "A classic board game for 2 players",
+            "number_of_players": 2,
+            "gamer_id": 1,
+            "maker": "Hasbro"
+        }
+    },
+    {
+        "model": "levelupapi.game",
+        "pk": 2,
+        "fields": {
+            "name": "Risk",
+            "game_type": 1,
+            "description": "Risk is a strategy board game of diplomacy, conflict and conquest for two to six players.",
+            "number_of_players": 6,
+            "gamer_id": 1,
+            "maker": "Hasbro"
+        }
+    }
+]
