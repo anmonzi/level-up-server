@@ -3,24 +3,36 @@
         "model": "levelupapi.game",
         "pk": 1,
         "fields": {
-            "name": "Checkers",
+            "title": "Welcome To",
+            "maker": "Benoit Turpin",
+            "gamer": 1,
             "game_type": 1,
-            "description": "A classic board game for 2 players",
-            "number_of_players": 2,
-            "gamer_id": 1,
-            "maker": "Hasbro"
+            "number_of_players": 4,
+            "skill_level": 3
         }
     },
     {
         "model": "levelupapi.game",
         "pk": 2,
         "fields": {
-            "name": "Risk",
+            "title": "Settlers of Catan",
+            "maker": "Klaus Teuber",
+            "gamer": 1,
             "game_type": 1,
-            "description": "Risk is a strategy board game of diplomacy, conflict and conquest for two to six players.",
-            "number_of_players": 6,
-            "gamer_id": 1,
-            "maker": "Hasbro"
+            "number_of_players": 4,
+            "skill_level": 4
+        }
+    },
+    {
+        "model": "levelupapi.game",
+        "pk": 3,
+        "fields": {
+            "title": "Dungeons & Dragons",
+            "maker": "Wizards of the Coast",
+            "gamer": 1,
+            "game_type": 2,
+            "number_of_players": 5,
+            "skill_level": 3
         }
     }
 ]
