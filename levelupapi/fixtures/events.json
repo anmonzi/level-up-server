@@ -3,12 +3,12 @@
         "model": "levelupapi.event",
         "pk": 1,
         "fields": {
-            "host_id": 1,
-            "game_id": 1,
-            "date": "2021-08-15",
-            "time": "13:00:00",
-            "description": "Come play a classic game of checkers, tournament style!",
-            "title": "Checkers Match",
+            "organizer": 1,
+            "description": "Welcome To at lunch",
+            "game": 1,
+            "date": "2021-10-04",
+            "time": "12:00",
+            "title": "Game.Set.Match.",
             "attendees": []
 
         }
@@ -17,12 +17,26 @@
         "model": "levelupapi.event",
         "pk": 2,
         "fields": {
-            "host_id": 1,
-            "game_id": 2,
-            "date": "2021-08-25",
-            "time": "15:00:00",
-            "description": "Come join a game of Risk. Food and beverages will be supplied for the length of the game.",
+            "organizer": 1,
+            "description": "Friday night Settlers and drinks",
+            "game": 2,
+            "date": "2021-08-14",
+            "time": "19:30",
             "title": "Risky Business",
+            "attendees": []
+
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 3,
+        "fields": {
+            "organizer": 1,
+            "description": "Vale of the Frost King campaign. All weekend.",
+            "game": 3,
+            "date": "2021-04-20",
+            "time": "8:00",
+            "title": "Loads of fun to be had!",
             "attendees": []
 
         }
