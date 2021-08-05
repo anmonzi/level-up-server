@@ -25,6 +25,7 @@ class EventView(ViewSet):
         event.date = request.data["date"]
         event.description = request.data["description"]
         event.organizer = gamer
+        event.title = request.data["title"]
 
         game = Game.objects.get(pk=request.data["gameId"])
         event.game = game
@@ -63,6 +64,7 @@ class EventView(ViewSet):
         event.date = request.data["date"]
         event.time = request.data["time"]
         event.organizer = organizer
+        event.title = request.data["title"]
 
         game = Game.objects.get(pk=request.data["gameId"])
         event.game = game
