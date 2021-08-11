@@ -17,3 +17,11 @@ class Game(models.Model):
     game_type = models.ForeignKey("GameType", on_delete=models.CASCADE)
     number_of_players = models.IntegerField()
     skill_level = models.IntegerField(default=0)
+
+    @property
+    def event_count(self):
+        return self.__event_count
+
+    @event_count.setter
+    def event_count(self, value):
+        self.__event_count = value

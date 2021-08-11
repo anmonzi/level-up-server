@@ -15,7 +15,7 @@ class Event(models.Model):
 
     organizer = models.ForeignKey("Gamer", on_delete=models.CASCADE)
     description = models.TextField()
-    game = models.ForeignKey("Game", on_delete=models.CASCADE)
+    game = models.ForeignKey("Game", on_delete=models.CASCADE, related_name='events')
     date = models.DateTimeField()
     time = models.TimeField()
     title = models.CharField(max_length=100)
