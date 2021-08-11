@@ -19,7 +19,7 @@ class Event(models.Model):
     date = models.DateTimeField()
     time = models.TimeField()
     title = models.CharField(max_length=100)
-    attendees = models.ManyToManyField("Gamer", through="EventGamer", related_name="attending")
+    attendees = models.ManyToManyField("Gamer", through="EventGamer", related_name='attending')
 
 
     @property
@@ -29,3 +29,11 @@ class Event(models.Model):
     @joined.setter
     def joined(self, value):
         self.__joined = value
+
+    @property
+    def attendees_count(self):
+        return self.__attendees_count
+
+    @attendees_count.setter
+    def attendees_count(self, value):
+        self.__attendees_count = value
