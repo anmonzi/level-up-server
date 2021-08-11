@@ -1,13 +1,14 @@
 """View module for handling requests about events"""
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.db.models.fields import BooleanField
 from django.http import HttpResponseServerError
 from rest_framework import status
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework.decorators import action
-from django.db.models import Count
+from django.db.models import Count, Case, When
 from levelupapi.models import Game, Event, Gamer
 
 
@@ -75,7 +76,7 @@ class EventView(ViewSet):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk=None):
-        """Handle DELETE requests for a single game
+        """Handle DELETE requests for a single event
 
         Returns:
             Response -- 200, 404, or 500 status code
@@ -101,7 +102,12 @@ class EventView(ViewSet):
         # Get the current authenticated user
         gamer = Gamer.objects.get(user=request.auth.user)
         # events = Event.objects.all()
-        events = Event.objects.annotate(attendees_count=Count('attendees'))
+        events = Event.objects.annotate(attendees_count=Count('attendees'),
+                                            owner=Case(
+                                                When(organizer=gamer, then=True),
+                                                default=False,
+                                                output_field=BooleanField()
+                                            ))
 
         # Set the  `joined` property on every event
         for event in events:
@@ -189,5 +195,5 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = ('id', 'game', 'organizer',
           'description', 'date', 'time', 'attendees',
-          'joined', 'attendees_count')
+          'joined', 'attendees_count', 'owner')
         depth = 1

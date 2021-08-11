@@ -13,7 +13,7 @@ class Game(models.Model):
 
     title = models.CharField(max_length=100)
     maker = models.CharField(max_length=50)
-    gamer = models.ForeignKey("Gamer", on_delete=models.CASCADE)
+    gamer = models.ForeignKey("Gamer", on_delete=models.CASCADE, related_name='games')
     game_type = models.ForeignKey("GameType", on_delete=models.CASCADE)
     number_of_players = models.IntegerField()
     skill_level = models.IntegerField(default=0)
@@ -25,3 +25,19 @@ class Game(models.Model):
     @event_count.setter
     def event_count(self, value):
         self.__event_count = value
+
+    @property
+    def owner(self):
+        return self.__owner
+
+    @owner.setter
+    def owner(self, value):
+        self.__owner = value
+
+    @property
+    def user_event_count(self):
+        return self.__user_event_count
+
+    @user_event_count.setter
+    def user_event_count(self, value):
+        self.__user_event_count = value

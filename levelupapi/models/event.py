@@ -33,7 +33,20 @@ class Event(models.Model):
     @property
     def attendees_count(self):
         return self.__attendees_count
+    # @property
+    # def attendee_count(self):
+    #     length = len(self.attendees.all())
+    #     return length
 
     @attendees_count.setter
     def attendees_count(self, value):
         self.__attendees_count = value
+
+    @property
+    def owner(self):
+        return self.__owner
+
+    @owner.setter
+    def owner(self, value):
+        self.__owner = value
+

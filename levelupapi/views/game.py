@@ -1,11 +1,12 @@
 """View module for handling requests about games"""
 from django.core.exceptions import ValidationError
+from django.db.models.fields import BooleanField
 from rest_framework import status
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from django.db.models import Count
+from django.db.models import Count, Case, When
 from levelupapi.models import Game, GameType, Gamer
 
 
@@ -123,9 +124,15 @@ class GameView(ViewSet):
         Returns:
             Response -- JSON serialized list of games
         """
+        gamer = Gamer.objects.get(user=request.auth.user)
         # Get all game records from the database
         # games = Game.objects.all()
-        games = Game.objects.annotate(event_count=Count('events'))
+        games = Game.objects.annotate(event_count=Count('events'),
+                                        owner=Case(
+                                            When(gamer=gamer, then=True),
+                                            default=False,
+                                            output_field=BooleanField()
+                                        ))
 
         # Support filtering games by type
         #    http://localhost:8000/games?type=1
@@ -134,6 +141,7 @@ class GameView(ViewSet):
         game_type = self.request.query_params.get('type', None)
         if game_type is not None:
             games = games.filter(game_type__id=game_type)
+            games.gamer = gamer
 
         serializer = GameSerializer(
             games, many=True, context={'request': request})
@@ -141,13 +149,21 @@ class GameView(ViewSet):
 
 
 
+class GamerSerializer(serializers.ModelSerializer):
+    """JSON serializer for game creator"""
+    class Meta:
+        model = Gamer
+        fields = ('id',)
+
 
 class GameSerializer(serializers.ModelSerializer):
     """JSON serializer for games
     Arguments: serializer type
     """
+    gamer = GamerSerializer(many=False)
+
     class Meta:
         model = Game
         fields = ('id', 'title', 'maker', 'number_of_players', 'skill_level',
-                    'gamer', 'game_type', 'event_count')
+                    'gamer', 'game_type', 'event_count', 'owner')
         depth = 1
