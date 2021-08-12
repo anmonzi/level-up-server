@@ -143,6 +143,11 @@ class GameView(ViewSet):
             games = games.filter(game_type__id=game_type)
             games.gamer = gamer
 
+        if "sortBy" in request.query_params:
+            attr = request.query_params["sortBy"]
+            if attr == "skill":
+                games = games.order_by("skill_level")
+
         serializer = GameSerializer(
             games, many=True, context={'request': request})
         return Response(serializer.data)

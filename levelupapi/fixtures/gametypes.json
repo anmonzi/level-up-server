@@ -19,5 +19,54 @@
         "fields": {
             "label": "MMO game"
         }
+    },
+    {
+        "model": "levelupapi.gametype",
+        "pk": 4,
+        "fields": {
+            "label": "Strategy game"
+        }
+    },
+    {
+        "model": "levelupapi.gametype",
+        "pk": 5,
+        "fields": {
+            "label": "Dice game"
+        }
+    },
+    {
+        "model": "levelupapi.gametype",
+        "pk": 6,
+        "fields": {
+            "label": "Card game"
+        }
+    },
+    {
+        "model": "levelupapi.gametype",
+        "pk": 7,
+        "fields": {
+            "label": "Sports game"
+        }
+    },
+    {
+        "model": "levelupapi.gametype",
+        "pk": 8,
+        "fields": {
+            "label": "Adventure game"
+        }
+    },
+    {
+        "model": "levelupapi.gametype",
+        "pk": 9,
+        "fields": {
+            "label": "Battle game"
+        }
+    },
+    {
+        "model": "levelupapi.gametype",
+        "pk": 10,
+        "fields": {
+            "label": "Kids game"
+        }
     }
 ]
