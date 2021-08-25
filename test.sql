@@ -1,35 +1,34 @@
 SELECT * FROM levelupapi_gametype;
-SELECT * FROM auth_user;
-SELECT * FROM authtoken_token;
-SELECT * FROM levelupapi_gamer;
-SELECT * FROM levelupapi_event;
-SELECT * FROM levelupapi_eventgamer;
+
+
+CREATE VIEW GAMES_BY_USER AS
+SELECT
+    g.id,
+    g.title,
+    g.maker,
+    g.game_type_id,
+    g.number_of_players,
+    g.skill_level,
+    u.id user_id,
+    u.first_name || ' ' || u.last_name AS full_name
+FROM
+    levelupapi_game g
+JOIN
+    levelupapi_gamer gr ON g.gamer_id = gr.id
+JOIN
+    auth_user u ON gr.user_id = u.id
+;
 
 
 
+CREATE VIEW EVENTS_BY_USER AS
 SELECT
     event.id,
     event.date,
     event.time,
     event.title,
     gamer.user_id as gamer_id,
-    au.first_name || ' ' || au.last_name as FullName
-FROM levelupapi_event as event
-JOIN levelupapi_eventgamer as gamerevent
-    ON event.id = gamerevent.event_id
-JOIN levelupapi_gamer as gamer
-    ON gamerevent.gamer_id = gamer.id
-JOIN auth_user as au
-    ON gamer.id = au.id;
-
-
-SELECT
-    event.id,
-    event.date,
-    event.time,
-    event.title,
-    gamer.user_id as gamer_id,
-    gm.title,
+    gm.title as title,
     au.first_name || ' ' || au.last_name as full_name
 FROM levelupapi_event as event
 JOIN levelupapi_eventgamer as gamerevent

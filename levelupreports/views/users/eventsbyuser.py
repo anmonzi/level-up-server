@@ -16,23 +16,20 @@ def userevent_list(request):
             # Query for all events, with related user info.
             db_cursor.execute("""
                 SELECT
-                    event.id,
-                    event.date,
-                    event.time,
-                    event.title,
-                    gamer.user_id as gamer_id,
-                    gm.title as title,
-                    au.first_name || ' ' || au.last_name as full_name
-                FROM levelupapi_event as event
-                JOIN levelupapi_eventgamer as gamerevent
-                    ON event.id = gamerevent.event_id
-                JOIN levelupapi_gamer as gamer
-                    ON gamerevent.gamer_id = gamer.id
-                JOIN auth_user as au
-                    ON gamer.user_id = au.id
-                JOIN levelupapi_game as gm
-                    ON event.game_id = gm.id;
+                    id,
+                    date,
+                    time,
+                    title,
+                    gamer_id,
+                    title,
+                    full_name
+                FROM
+                    EVENTS_BY_USER
             """)
+            # As you are building out more features of the Django REST API application, 
+            # you realize that you need that exact query. You have two options.
+            # Create a database view and have the API application and the reporting application both query the view.
+            # You will get back the exact same data because the database will run the original SQL for you and return it.
 
             dataset = db_cursor.fetchall()
 
