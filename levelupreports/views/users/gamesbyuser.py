@@ -5,7 +5,6 @@ from levelupapi.models import Game
 from levelupreports.views import Connection
 
 
-
 def usergame_list(request):
     """Function to build an HTML report of games by user"""
     if request.method == 'GET':

@@ -27,9 +27,9 @@ router.register(r'events', EventView, 'event')
 router.register(r'profile', Profile, 'profile')
 
 urlpatterns = [
+    path('', include('levelupreports.urls')),
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('', include('levelupreports.urls')),
     path('register', register_user),
     path('login', login_user),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
